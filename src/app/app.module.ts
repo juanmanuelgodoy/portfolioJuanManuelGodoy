@@ -8,6 +8,8 @@ import { LogoArgProgramaComponent } from './componentes/logo-arg-programa/logo-a
 import { SocialesComponent } from './componentes/sociales/sociales.component';
 import { BannerComponent } from './componentes/banner/banner.component';
 import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
+import { ExplaboralComponent } from './componentes/explaboral/explaboral.component';
+import { EducacionComponent } from './componentes/educacion/educacion.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AcercaDeComponent } from './componentes/acerca-de/acerca-de.component';
     LogoArgProgramaComponent,
     SocialesComponent,
     BannerComponent,
-    AcercaDeComponent
+    AcercaDeComponent,
+    ExplaboralComponent,
+    EducacionComponent
   ],
   imports: [
     BrowserModule,
