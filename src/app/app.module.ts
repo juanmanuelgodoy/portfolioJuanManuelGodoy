@@ -12,6 +12,7 @@ import { ExplaboralComponent } from './componentes/explaboral/explaboral.compone
 import { EducacionComponent } from './componentes/educacion/educacion.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HardAndSkillsComponent } from './componentes/hard-and-skills/hard-and-skills.component';
+import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HardAndSkillsComponent } from './componentes/hard-and-skills/hard-and-s
     AcercaDeComponent,
     ExplaboralComponent,
     EducacionComponent,
-    HardAndSkillsComponent
+    HardAndSkillsComponent,
+    ProyectosComponent
   ],
   imports: [
     BrowserModule,
