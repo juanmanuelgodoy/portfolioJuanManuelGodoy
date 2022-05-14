@@ -1,3 +1,37 @@
+.container{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.redesSociales{
+    margin-right: 1em;
+}
 #APLogo{
     width: 150px;
+}
+img{
+    width: 40px;
+}
+.btn{
+    border-width: medium;
+    border-color: white;
+    color: white;
+    font-weight: 700;
+}
+
+@media(max-width: 575px){
+
+.container{
+    flex-direction: column;
+}
+
+.redesSociales{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.redesSociales img{
+    margin: 0.5em;
+}
 }
