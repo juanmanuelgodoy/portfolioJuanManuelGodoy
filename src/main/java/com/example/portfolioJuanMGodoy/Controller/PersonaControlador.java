@@ -46,11 +46,11 @@ public class PersonaControlador {
 	}
 	
 	@PutMapping("/persona/modificar/{id}")
-	public PersonaEntidad modificarPersona(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("apellido") String nuevoApellido, @RequestParam ("foto") String nuevaFoto ) {
+	public PersonaEntidad modificarPersona(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("apellido") String nuevoApellido, @RequestParam ("fotourl") String nuevaFoto ) {
 		PersonaEntidad persona = personaInterfaz.buscarPersona(id);
 		persona.setNombre(nuevoNombre);
 		persona.setApellido(nuevoApellido);
-		persona.setFoto(nuevaFoto);
+		persona.setFotourl(nuevaFoto);
 		
 		personaInterfaz.guardarPersona(persona);
 		return persona;
