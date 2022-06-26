@@ -10,13 +10,13 @@ public class SocialesEntidad {
   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long idSociales;
+    public int idSociales;
     private String nombre;
     private String url;
     private String fotourl;
     private int persona;
 
-    public SocialesEntidad(Long idSociales, String nombre, String url, String fotourl, int persona) {
+    public SocialesEntidad(int idSociales, String nombre, String url, String fotourl, int persona) {
         this.idSociales = idSociales;
         this.nombre = nombre;
         this.url = url;
@@ -27,11 +27,11 @@ public class SocialesEntidad {
     public SocialesEntidad() {
     }
 
-    public Long getIdSociales() {
+    public int getIdSociales() {
         return idSociales;
     }
 
-    public void setIdSociales(Long idSociales) {
+    public void setIdSociales(int idSociales) {
         this.idSociales = idSociales;
     }
 

@@ -11,7 +11,7 @@ public class ExpLaboralEntidad {
     
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO)
-public Long idExpLaboral;
+public int idExpLaboral;
 private String puesto;
 private String descripcion;
 private String empresa;
@@ -20,7 +20,7 @@ private LocalDate fechafin;
 private String fotourl;
 private int persona;
 
-    public ExpLaboralEntidad(Long idExpLaboral, String puesto, String descripcion, String empresa, LocalDate fechainicio, LocalDate fechafin, String fotourl, int persona) {
+    public ExpLaboralEntidad(int idExpLaboral, String puesto, String descripcion, String empresa, LocalDate fechainicio, LocalDate fechafin, String fotourl, int persona) {
         this.idExpLaboral = idExpLaboral;
         this.puesto = puesto;
         this.descripcion = descripcion;
@@ -34,11 +34,11 @@ private int persona;
     public ExpLaboralEntidad() {
     }
 
-    public Long getIdExpLaboral() {
+    public int getIdExpLaboral() {
         return idExpLaboral;
     }
 
-    public void setIdExpLaboral(Long idExpLaboral) {
+    public void setIdExpLaboral(int idExpLaboral) {
         this.idExpLaboral = idExpLaboral;
     }
 

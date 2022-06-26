@@ -11,7 +11,7 @@ public class EducacionEntidad {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long idEducacion;
+    public int idEducacion;
     private String titulo;
     private LocalDate fechafin;
     private String institucion;
@@ -19,7 +19,7 @@ public class EducacionEntidad {
     private String fotourl;
     private int persona;
 
-    public EducacionEntidad(Long idEducacion, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
+    public EducacionEntidad(int idEducacion, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
         this.idEducacion = idEducacion;
         this.titulo = titulo;
         this.fechafin = fechafin;
@@ -32,11 +32,11 @@ public class EducacionEntidad {
     public EducacionEntidad() {
     }
 
-    public Long getIdEducacion() {
+    public int getIdEducacion() {
         return idEducacion;
     }
 
-    public void setIdEducacion(Long idEducacion) {
+    public void setIdEducacion(int idEducacion) {
         this.idEducacion = idEducacion;
     }
 

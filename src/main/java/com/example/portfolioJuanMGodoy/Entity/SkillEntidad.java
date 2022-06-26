@@ -10,12 +10,12 @@ public class SkillEntidad {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long idSkill;
+    public int idSkill;
     private String titulo;
     private int dominio;
     private int persona;
 
-    public SkillEntidad(Long idSkill, String titulo, int dominio, int persona) {
+    public SkillEntidad(int idSkill, String titulo, int dominio, int persona) {
         this.idSkill = idSkill;
         this.titulo = titulo;
         this.dominio = dominio;
@@ -25,11 +25,11 @@ public class SkillEntidad {
     public SkillEntidad() {
     }
 
-    public Long getIdSkill() {
+    public int getIdSkill() {
         return idSkill;
     }
 
-    public void setIdSkill(Long idSkill) {
+    public void setIdSkill(int idSkill) {
         this.idSkill = idSkill;
     }
 

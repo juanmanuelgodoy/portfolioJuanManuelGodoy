@@ -1,10 +1,21 @@
 package com.example.portfolioJuanMGodoy.Repository;
 
 import com.example.portfolioJuanMGodoy.Entity.PersonaEntidad;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonaRepositorio extends JpaRepository <PersonaEntidad, Long> {
-
+public interface PersonaRepositorio extends CrudRepository<PersonaEntidad, Integer> {
+    
+   public abstract PersonaEntidad findByUsername(String username);
+    
 }
+
+//import com.example.portfolioJuanMGodoy.Entity.PersonaEntidad;
+//import org.springframework.data.jpa.repository.JpaRepository;
+//import org.springframework.stereotype.Repository;
+//
+//@Repository
+//public interface PersonaRepositorio extends JpaRepository <PersonaEntidad, int> {
+//
+//}
