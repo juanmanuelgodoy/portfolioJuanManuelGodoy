@@ -1,58 +1,61 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
 import com.example.portfolioJuanMGodoy.Entity.SocialesEntidad;
-import com.example.portfolioJuanMGodoy.Service.SocialesServicio;
+import com.example.portfolioJuanMGodoy.Interface.SocialesInterfaz;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
+@CrossOrigin("*")
+@RestController
+@RequestMapping
+//("/api/sociales")
 public class SocialesControlador {
     
     @Autowired
-    private SocialesServicio socialesServicio;
+    SocialesInterfaz socialesInterfaz;
 
-    @GetMapping
-    public List<SocialesEntidad> getAll() {
-        return socialesServicio.getAll();
+    @GetMapping("/sociales/traer")
+    public List<SocialesEntidad> getSociales() {
+        return socialesInterfaz.getSociales();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SocialesEntidad> getById(@PathVariable(value = "id") int id) {
-        return socialesServicio.getById(id);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<SocialesEntidad> getById(@PathVariable(value = "id") String id) {
+//        return socialesInterfaz.getById(id);
+//    }
 
-    @PostMapping
-    public SocialesEntidad save(@Validated @RequestBody SocialesEntidad red) {
-        return socialesServicio.save(red);
-    }
+    @PostMapping("/sociales/crear")
+	public String crearSociales(@RequestBody SocialesEntidad sociales) {
+    	socialesInterfaz.saveSociales(sociales);
+		return "Redes sociales creadas con éxito";
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<SocialesEntidad> update(@PathVariable(value = "id") int id, @Validated @RequestBody SocialesEntidad red) {
-        if (id == red.getIdSociales()) {
-            SocialesEntidad redNew = socialesServicio.save(red);
-            return ResponseEntity.ok().body(redNew);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@DeleteMapping("/sociales/borrar/{id}")
+	public String eliminarSociales(@PathVariable String id) {
+		socialesInterfaz.deleteSociales(id);
+		return "Redes sociales eliminadas con exito";
+	}
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<SocialesEntidad> delete(@PathVariable int id) {
-        boolean ok = socialesServicio.delete(id);
-        if (ok) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
-    
+    @PutMapping("/sociales/editar/{id}")
+	public SocialesEntidad modificarSociales(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("url") String nuevaUrl, @RequestParam ("fotourl") String nuevaFotourl) {
+
+    	SocialesEntidad sociales = socialesInterfaz.findSociales(id);
+
+    	sociales.setFotourl(nuevaFotourl);
+    	sociales.setNombre(nuevoNombre);
+    	sociales.setUrl(nuevaFotourl);
+
+    	socialesInterfaz.saveSociales(sociales);
+    	return sociales;
     }
 }

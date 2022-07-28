@@ -3,15 +3,17 @@ package com.example.portfolioJuanMGodoy.Entity;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class ExpLaboralEntidad {
     
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-public int idExpLaboral;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+private String id;
 private String puesto;
 private String descripcion;
 private String empresa;
@@ -20,8 +22,8 @@ private LocalDate fechafin;
 private String fotourl;
 private int persona;
 
-    public ExpLaboralEntidad(int idExpLaboral, String puesto, String descripcion, String empresa, LocalDate fechainicio, LocalDate fechafin, String fotourl, int persona) {
-        this.idExpLaboral = idExpLaboral;
+    public ExpLaboralEntidad(String id, String puesto, String descripcion, String empresa, LocalDate fechainicio, LocalDate fechafin, String fotourl, int persona) {
+        this.id = id;
         this.puesto = puesto;
         this.descripcion = descripcion;
         this.empresa = empresa;
@@ -34,12 +36,12 @@ private int persona;
     public ExpLaboralEntidad() {
     }
 
-    public int getIdExpLaboral() {
-        return idExpLaboral;
+    public String getId() {
+        return id;
     }
 
-    public void setIdExpLaboral(int idExpLaboral) {
-        this.idExpLaboral = idExpLaboral;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPuesto() {
@@ -100,7 +102,7 @@ private int persona;
 
     @Override
     public String toString() {
-        return "ExpLaboralEntidad{" + "idExpLaboral=" + idExpLaboral + ", puesto=" + puesto + ", descripcion=" + descripcion + ", empresa=" + empresa + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", fotourl=" + fotourl + ", persona=" + persona + '}';
+        return "ExpLaboralEntidad{" + "id=" + id + ", puesto=" + puesto + ", descripcion=" + descripcion + ", empresa=" + empresa + ", fechainicio=" + fechainicio + ", fechafin=" + fechafin + ", fotourl=" + fotourl + ", persona=" + persona + '}';
     }
 
 }

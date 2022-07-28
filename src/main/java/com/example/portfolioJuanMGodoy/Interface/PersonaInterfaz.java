@@ -7,9 +7,9 @@ public interface PersonaInterfaz {
 	
 	public List<PersonaEntidad> getPersona();
 	
-	public void guardarPersona(PersonaEntidad persona);
+	public void savePersona(PersonaEntidad persona);
 
-	public void eliminarPersona(String id);
+	public void deletePersona(String id);
 	
-	public PersonaEntidad buscarPersona(String id);
+	public PersonaEntidad findPersona(String id);
 }

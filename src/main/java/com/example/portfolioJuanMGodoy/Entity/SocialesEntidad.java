@@ -2,22 +2,24 @@ package com.example.portfolioJuanMGodoy.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class SocialesEntidad {
   
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int idSociales;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private String nombre;
     private String url;
     private String fotourl;
     private int persona;
 
-    public SocialesEntidad(int idSociales, String nombre, String url, String fotourl, int persona) {
-        this.idSociales = idSociales;
+    public SocialesEntidad(String id, String nombre, String url, String fotourl, int persona) {
+        this.id = id;
         this.nombre = nombre;
         this.url = url;
         this.fotourl = fotourl;
@@ -27,12 +29,12 @@ public class SocialesEntidad {
     public SocialesEntidad() {
     }
 
-    public int getIdSociales() {
-        return idSociales;
+    public String getId() {
+        return id;
     }
 
-    public void setIdSociales(int idSociales) {
-        this.idSociales = idSociales;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -69,7 +71,7 @@ public class SocialesEntidad {
 
     @Override
     public String toString() {
-        return "SocialesEntidad{" + "idSociales=" + idSociales + ", nombre=" + nombre + ", url=" + url + ", fotourl=" + fotourl + ", persona=" + persona + '}';
+        return "SocialesEntidad{" + "id=" + id + ", nombre=" + nombre + ", url=" + url + ", fotourl=" + fotourl + ", persona=" + persona + '}';
     }
     
     

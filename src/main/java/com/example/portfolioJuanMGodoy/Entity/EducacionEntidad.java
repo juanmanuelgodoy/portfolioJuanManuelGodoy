@@ -3,15 +3,17 @@ package com.example.portfolioJuanMGodoy.Entity;
 import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class EducacionEntidad {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int idEducacion;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private String titulo;
     private LocalDate fechafin;
     private String institucion;
@@ -19,8 +21,8 @@ public class EducacionEntidad {
     private String fotourl;
     private int persona;
 
-    public EducacionEntidad(int idEducacion, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
-        this.idEducacion = idEducacion;
+    public EducacionEntidad(String id, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
+        this.id = id;
         this.titulo = titulo;
         this.fechafin = fechafin;
         this.institucion = institucion;
@@ -32,12 +34,12 @@ public class EducacionEntidad {
     public EducacionEntidad() {
     }
 
-    public int getIdEducacion() {
-        return idEducacion;
+    public String getId() {
+        return id;
     }
 
-    public void setIdEducacion(int idEducacion) {
-        this.idEducacion = idEducacion;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -90,7 +92,7 @@ public class EducacionEntidad {
 
     @Override
     public String toString() {
-        return "EducacionEntidad{" + "idEducacion=" + idEducacion + ", titulo=" + titulo + ", fechafin=" + fechafin + ", institucion=" + institucion + ", institucionurl=" + institucionurl + ", fotourl=" + fotourl + ", persona=" + persona + '}';
+        return "EducacionEntidad{" + "id=" + id + ", titulo=" + titulo + ", fechafin=" + fechafin + ", institucion=" + institucion + ", institucionurl=" + institucionurl + ", fotourl=" + fotourl + ", persona=" + persona + '}';
     }
  
     

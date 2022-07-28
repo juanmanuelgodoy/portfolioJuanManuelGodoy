@@ -1,63 +1,61 @@
 package com.example.portfolioJuanMGodoy.Controller;
 import com.example.portfolioJuanMGodoy.Entity.SkillEntidad;
-import com.example.portfolioJuanMGodoy.Service.SkillServicio;
+import com.example.portfolioJuanMGodoy.Interface.SkillInterfaz;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/skills")
+@RequestMapping
+//("/api/skills")
 public class SkillControlador {
     
     @Autowired
-    private SkillServicio skillServicio;
+   SkillInterfaz skillInterfaz;
 
-    @GetMapping
-    public List<SkillEntidad> getAll() {
-        return skillServicio.getAll();
+    @GetMapping("/skills/traer")
+    public List<SkillEntidad> getSkill() {
+        return skillInterfaz.getSkill();
     }        
 
-    @GetMapping("/{id}")
-    public ResponseEntity<SkillEntidad> getById(@PathVariable(value = "id") int id) {
-        return skillServicio.getById(id);
-    } 
+//    @GetMapping("/{id}")
+//    public ResponseEntity<SkillEntidad> getById(@PathVariable(value = "id") String id) {
+//        return skillInterfaz.getById(id);
+//    } 
     
-    @PostMapping
-    public SkillEntidad save(@Validated @RequestBody SkillEntidad skill) {
-        return skillServicio.save(skill);
-    }
+    @PostMapping("/skills/crear")
+	public String crearSkill(@RequestBody SkillEntidad skill) {
+    	skillInterfaz.saveSkill(skill);
+		return "Skill creada con éxito";
+	}
+
+	@DeleteMapping("/skills/borrar/{id}")
+	public String eliminarSkill(@PathVariable String id) {
+		skillInterfaz.deleteSkill(id);
+		return "Skill eliminada con exito";
+	}
     
-    @PutMapping("/{id}")
-    public ResponseEntity<SkillEntidad> update(@PathVariable(value = "id") int id, @Validated @RequestBody SkillEntidad skill) {
-        if (id == skill.getIdSkill()) {
-            SkillEntidad skillNew = skillServicio.save(skill);
-            return ResponseEntity.ok().body(skillNew);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+    @PutMapping("/skills/editar/{id}")
+	public SkillEntidad modificarSkill(@PathVariable String id, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("dominio") Integer nuevoDominio) {
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<SkillEntidad> delete(@PathVariable int id) {
-        boolean ok = skillServicio.delete(id);
-        if (ok) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
-    }
+    	SkillEntidad skill = skillInterfaz.findSkill(id);
 
+    	skill.setTitulo(nuevoTitulo);
+    	skill.setDominio(nuevoDominio);
+
+    	skillInterfaz.saveSkill(skill);
+    	return skill;
+    }
 }
 

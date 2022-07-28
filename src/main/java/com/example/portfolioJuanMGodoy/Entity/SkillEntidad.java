@@ -2,21 +2,23 @@ package com.example.portfolioJuanMGodoy.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class SkillEntidad {
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int idSkill;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private String titulo;
-    private int dominio;
+    private Integer dominio;
     private int persona;
 
-    public SkillEntidad(int idSkill, String titulo, int dominio, int persona) {
-        this.idSkill = idSkill;
+    public SkillEntidad(String id, String titulo, int dominio, Integer persona) {
+        this.id = id;
         this.titulo = titulo;
         this.dominio = dominio;
         this.persona = persona;
@@ -25,12 +27,12 @@ public class SkillEntidad {
     public SkillEntidad() {
     }
 
-    public int getIdSkill() {
-        return idSkill;
+    public String getId() {
+        return id;
     }
 
-    public void setIdSkill(int idSkill) {
-        this.idSkill = idSkill;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitulo() {
@@ -41,11 +43,11 @@ public class SkillEntidad {
         this.titulo = titulo;
     }
 
-    public int getDominio() {
+    public Integer getDominio() {
         return dominio;
     }
 
-    public void setDominio(int dominio) {
+    public void setDominio(Integer dominio) {
         this.dominio = dominio;
     }
 
@@ -59,7 +61,7 @@ public class SkillEntidad {
 
     @Override
     public String toString() {
-        return "SkillEntidad{" + "idSkill=" + idSkill + ", titulo=" + titulo + ", dominio=" + dominio + ", persona=" + persona + '}';
+        return "SkillEntidad{" + "id=" + id + ", titulo=" + titulo + ", dominio=" + dominio + ", persona=" + persona + '}';
     }
     
     

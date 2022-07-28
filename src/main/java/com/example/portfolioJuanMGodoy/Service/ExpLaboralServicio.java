@@ -2,45 +2,37 @@ package com.example.portfolioJuanMGodoy.Service;
 
 
 import com.example.portfolioJuanMGodoy.Entity.ExpLaboralEntidad;
+import com.example.portfolioJuanMGodoy.Interface.ExpLaboralInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.ExpLaboralRepositorio;
 import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ExpLaboralServicio {
+public class ExpLaboralServicio implements ExpLaboralInterfaz{
     
     @Autowired
     ExpLaboralRepositorio expLaboralRepositorio;
     
-    public List<ExpLaboralEntidad> getAll() {
-        return (List<ExpLaboralEntidad>) expLaboralRepositorio.findAll();
-    }
-    
-    public ResponseEntity<ExpLaboralEntidad> getById(int id) {
+	@Override 
+	public List<ExpLaboralEntidad> getExpLaboral() { 
+		List<ExpLaboralEntidad> expLaboral = expLaboralRepositorio.findAll(); 
+		return expLaboral; 
+	}
 
-        Optional<ExpLaboralEntidad> laboral = expLaboralRepositorio.findById(id);
+	@Override 
+	public void saveExpLaboral(ExpLaboralEntidad expLaboral) {
+		expLaboralRepositorio.save(expLaboral);
+	 }
 
-        if (laboral.isPresent()) {
-            return ResponseEntity.ok().body(laboral.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-    
-    public ExpLaboralEntidad save(ExpLaboralEntidad laboral) {
-        return expLaboralRepositorio.save(laboral); 
-    }
+	@Override
+	public void deleteExpLaboral(String id) {
+		expLaboralRepositorio.deleteById(id);
+	}
 
-    public boolean delete(int id) {
-        try {
-            expLaboralRepositorio.deleteById(id); 
-            return true;
-        } catch(Exception err){
-            return false;
-        }
-    } 
-
+	@Override
+	public ExpLaboralEntidad findExpLaboral(String id) {
+		ExpLaboralEntidad expLaboral = expLaboralRepositorio.findById(id).orElse(null);
+		return expLaboral;
+	}
 }

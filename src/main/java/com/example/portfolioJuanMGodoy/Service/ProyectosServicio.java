@@ -1,45 +1,40 @@
 package com.example.portfolioJuanMGodoy.Service;
 
 import com.example.portfolioJuanMGodoy.Entity.ProyectosEntidad;
+import com.example.portfolioJuanMGodoy.Interface.ProyectosInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.ProyectosRepositorio;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProyectosServicio {
+public class ProyectosServicio implements ProyectosInterfaz{
+	
     @Autowired
     ProyectosRepositorio proyectosRepositorio;
 
-    public List<ProyectosEntidad> getAll(){
-        return (List<ProyectosEntidad>) proyectosRepositorio.findAll();
-    }
+	@Override 
+	public List<ProyectosEntidad> getProyectos() { 
+		List<ProyectosEntidad> proyectos = proyectosRepositorio.findAll(); 
+		return proyectos; 
+	}
 
-    public ResponseEntity<ProyectosEntidad> getById(int id) {
+	@Override 
+	public void saveProyectos(ProyectosEntidad proyectos) {
+		proyectosRepositorio.save(proyectos);
+	 }
 
-        Optional<ProyectosEntidad> proyecto = proyectosRepositorio.findById(id);
+	@Override
+	public void deleteProyectos(String id) {
+		proyectosRepositorio.deleteById(id);
+	}
 
-        if (proyecto.isPresent()) {
-            return ResponseEntity.ok().body(proyecto.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    public ProyectosEntidad save(ProyectosEntidad proyecto) {
-        return proyectosRepositorio.save(proyecto); 
-    }
-    public boolean delete(int id) {
-        try {
-            proyectosRepositorio.deleteById(id);
-            return true;
-        } catch(Exception err){
-            return false;
-        }
-    }
+	@Override
+	public ProyectosEntidad findProyectos(String id) {
+		ProyectosEntidad proyectos = proyectosRepositorio.findById(id).orElse(null);
+		return proyectos;
+	}
 }
 
     

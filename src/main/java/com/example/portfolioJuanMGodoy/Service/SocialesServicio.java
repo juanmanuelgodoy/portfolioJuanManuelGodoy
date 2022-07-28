@@ -1,47 +1,41 @@
 package com.example.portfolioJuanMGodoy.Service;
 
 import com.example.portfolioJuanMGodoy.Entity.SocialesEntidad;
+import com.example.portfolioJuanMGodoy.Interface.SocialesInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.SocialesRepositorio;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SocialesServicio {
+public class SocialesServicio implements SocialesInterfaz{
+	
     @Autowired
     SocialesRepositorio socialesRepositorio;
 
-    public List<SocialesEntidad> getAll(){
-        return (List<SocialesEntidad>) socialesRepositorio.findAll();
-    }
+	@Override 
+	public List<SocialesEntidad> getSociales() { 
+		List<SocialesEntidad> sociales = socialesRepositorio.findAll(); 
+		return sociales; 
+	}
 
-    public ResponseEntity<SocialesEntidad> getById (int id) {
+	@Override 
+	public void saveSociales(SocialesEntidad sociales) {
+		socialesRepositorio.save(sociales);
+	 }
 
-        Optional<SocialesEntidad> red = socialesRepositorio.findById(id);
+	@Override
+	public void deleteSociales(String id) {
+		socialesRepositorio.deleteById(id);
+	}
 
-        if (red.isPresent()) {
-            return ResponseEntity.ok().body(red.get());
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    public SocialesEntidad save(SocialesEntidad red) {
-        return socialesRepositorio.save(red);
-    }
-
-    public boolean delete(int id) {
-        try {
-            socialesRepositorio.deleteById(id);
-            return true;
-        } catch(Exception err){
-            return false;
-        }
-    }
-    
+	@Override
+	public SocialesEntidad findSociales(String id) {
+		SocialesEntidad sociales = socialesRepositorio.findById(id).orElse(null);
+		return sociales;
+	}
+   
 }
 
     

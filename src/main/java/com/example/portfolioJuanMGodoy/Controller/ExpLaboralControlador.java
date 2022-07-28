@@ -1,62 +1,68 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
 import com.example.portfolioJuanMGodoy.Entity.ExpLaboralEntidad;
-import com.example.portfolioJuanMGodoy.Service.ExpLaboralServicio;
+import com.example.portfolioJuanMGodoy.Interface.ExpLaboralInterfaz;
+
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/laboral")
+@RequestMapping
+//("/api/expLaboral")
 public class ExpLaboralControlador {
     
     @Autowired
-    private ExpLaboralServicio expLaboralServicio;
+    ExpLaboralInterfaz expLaboralInterfaz;
 
-    @GetMapping
-    public List<ExpLaboralEntidad> getAll() {
-        return expLaboralServicio.getAll();
+    @GetMapping("/explaboral/traer")
+    public List<ExpLaboralEntidad> getexpLaboral() {
+        return expLaboralInterfaz.getExpLaboral();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<ExpLaboralEntidad> getById(@PathVariable(value = "id") int id) {
-        return expLaboralServicio.getById(id);
-    }
+//    @GetMapping("/{id}")
+//    public ResponseEntity<ExpLaboralEntidad> getById(@PathVariable(value = "id") String id) {
+//        return expLaboralServicio.getById(id);
+//    }
 
-    @PostMapping
-    public ExpLaboralEntidad save(@Validated @RequestBody ExpLaboralEntidad expLaboral) {
-        return expLaboralServicio.save(expLaboral);
-    }
+    @PostMapping("/explaboral/crear")
+	public String crearExpLaboral(@RequestBody ExpLaboralEntidad expLaboral) {
+    	expLaboralInterfaz.saveExpLaboral(expLaboral);
+		return "Experiencia laboral creada con éxito";
+	}
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ExpLaboralEntidad> update(@PathVariable(value = "id") int id, @Validated @RequestBody ExpLaboralEntidad expLaboral) {
-        if (id == expLaboral.getIdExpLaboral()) {
-         ExpLaboralEntidad expLaboralNew = expLaboralServicio.save(expLaboral);
-            return ResponseEntity.ok().body(expLaboralNew);
-        } else {
-            return ResponseEntity.badRequest().build();
-        }
-    }
+	@DeleteMapping("/expLaboral/borrar/{id}")
+	public String eliminarExpLaboral(@PathVariable String id) {
+		expLaboralInterfaz.deleteExpLaboral(id);
+		return "Experiencia laboral eliminada con exito";
+	}
+	
+    @PutMapping("/explaboral/editar/{id}")
+	public ExpLaboralEntidad modificarExpLaboral(@PathVariable String id, @RequestParam ("puesto") String nuevoPuesto, @RequestParam ("fechafin") LocalDate nuevaFechafin, @RequestParam ("fechainicio") LocalDate nuevaFechainicio, @RequestParam ("descripcion") String nuevaDescripcion,
+			@RequestParam ("empresa") String nuevaEmpresa, @RequestParam ("fotourl") String nuevaFotourl) {
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ExpLaboralEntidad> delete(@PathVariable int id) {
-        boolean ok = expLaboralServicio.delete(id);
-        if (ok) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.internalServerError().build();
-        }
+    	ExpLaboralEntidad expLaboral = expLaboralInterfaz.findExpLaboral(id);
+
+    	expLaboral.setFechafin(nuevaFechafin);
+    	expLaboral.setFotourl(nuevaFotourl);
+    	expLaboral.setDescripcion(nuevaDescripcion);
+    	expLaboral.setEmpresa(nuevaEmpresa);
+    	expLaboral.setFechainicio(nuevaFechainicio);
+    	expLaboral.setPuesto(nuevoPuesto);
+
+    	expLaboralInterfaz.saveExpLaboral(expLaboral);
+    	return expLaboral;
     }
 }
 

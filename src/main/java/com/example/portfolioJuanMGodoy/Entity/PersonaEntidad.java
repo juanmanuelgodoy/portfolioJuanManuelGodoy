@@ -2,15 +2,16 @@ package com.example.portfolioJuanMGodoy.Entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class PersonaEntidad {
 	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public int idPersona;
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")
+    private String id;
     private String nombre;
     private String apellido;
     private String email;
@@ -23,8 +24,8 @@ public class PersonaEntidad {
     private String username;
     private String password;
 
-    public PersonaEntidad(int idPersona, String nombre, String apellido, String email, String titulo, String telefono, String ubicacion, String acerca, String fotourl, String coverurl, String username, String password) {
-        this.idPersona = idPersona;
+    public PersonaEntidad(String id, String nombre, String apellido, String email, String titulo, String telefono, String ubicacion, String acerca, String fotourl, String coverurl, String username, String password) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -41,12 +42,12 @@ public class PersonaEntidad {
     public PersonaEntidad() {
     }
 
-    public int getIdPersona() {
-        return idPersona;
+    public String getId() {
+        return id;
     }
 
-    public void setIdPersona(int idPersona) {
-        this.idPersona = idPersona;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -139,7 +140,7 @@ public class PersonaEntidad {
 
     @Override
     public String toString() {
-        return "PersonaEntidad{" + "idPersona=" + idPersona + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", titulo=" + titulo + ", telefono=" + telefono + ", ubicacion=" + ubicacion + ", acerca=" + acerca + ", fotourl=" + fotourl + ", coverurl=" + coverurl + ", username=" + username + ", password=" + password + '}';
+        return "PersonaEntidad{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", titulo=" + titulo + ", telefono=" + telefono + ", ubicacion=" + ubicacion + ", acerca=" + acerca + ", fotourl=" + fotourl + ", coverurl=" + coverurl + ", username=" + username + ", password=" + password + '}';
     }
 
 	
