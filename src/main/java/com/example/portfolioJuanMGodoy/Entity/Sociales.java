@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class SocialesEntidad {
+public class Sociales {
   
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -18,7 +18,7 @@ public class SocialesEntidad {
     private String fotourl;
     private int persona;
 
-    public SocialesEntidad(String id, String nombre, String url, String fotourl, int persona) {
+    public Sociales(String id, String nombre, String url, String fotourl, int persona) {
         this.id = id;
         this.nombre = nombre;
         this.url = url;
@@ -26,7 +26,7 @@ public class SocialesEntidad {
         this.persona = persona;
     }
 
-    public SocialesEntidad() {
+    public Sociales() {
     }
 
     public String getId() {

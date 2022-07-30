@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
-import com.example.portfolioJuanMGodoy.Entity.ExpLaboralEntidad;
+import com.example.portfolioJuanMGodoy.Entity.ExpLaboral;
 import com.example.portfolioJuanMGodoy.Interface.ExpLaboralInterfaz;
 
 import java.time.LocalDate;
@@ -27,7 +27,7 @@ public class ExpLaboralControlador {
     ExpLaboralInterfaz expLaboralInterfaz;
 
     @GetMapping("/explaboral/traer")
-    public List<ExpLaboralEntidad> getexpLaboral() {
+    public List<ExpLaboral> getexpLaboral() {
         return expLaboralInterfaz.getExpLaboral();
     }
 
@@ -37,7 +37,7 @@ public class ExpLaboralControlador {
 //    }
 
     @PostMapping("/explaboral/crear")
-	public String crearExpLaboral(@RequestBody ExpLaboralEntidad expLaboral) {
+	public String crearExpLaboral(@RequestBody ExpLaboral expLaboral) {
     	expLaboralInterfaz.saveExpLaboral(expLaboral);
 		return "Experiencia laboral creada con éxito";
 	}
@@ -49,10 +49,10 @@ public class ExpLaboralControlador {
 	}
 	
     @PutMapping("/explaboral/editar/{id}")
-	public ExpLaboralEntidad modificarExpLaboral(@PathVariable String id, @RequestParam ("puesto") String nuevoPuesto, @RequestParam ("fechafin") LocalDate nuevaFechafin, @RequestParam ("fechainicio") LocalDate nuevaFechainicio, @RequestParam ("descripcion") String nuevaDescripcion,
+	public ExpLaboral modificarExpLaboral(@PathVariable String id, @RequestParam ("puesto") String nuevoPuesto, @RequestParam ("fechafin") LocalDate nuevaFechafin, @RequestParam ("fechainicio") LocalDate nuevaFechainicio, @RequestParam ("descripcion") String nuevaDescripcion,
 			@RequestParam ("empresa") String nuevaEmpresa, @RequestParam ("fotourl") String nuevaFotourl) {
 
-    	ExpLaboralEntidad expLaboral = expLaboralInterfaz.findExpLaboral(id);
+    	ExpLaboral expLaboral = expLaboralInterfaz.findExpLaboral(id);
 
     	expLaboral.setFechafin(nuevaFechafin);
     	expLaboral.setFotourl(nuevaFotourl);

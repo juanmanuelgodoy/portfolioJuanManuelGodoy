@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
-import com.example.portfolioJuanMGodoy.Entity.EducacionEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Educacion;
 import com.example.portfolioJuanMGodoy.Interface.EducacionInterfaz;
 
 import java.time.LocalDate;
@@ -28,7 +28,7 @@ public class EducacionControlador {
     EducacionInterfaz educacionInterfaz;
 
     @GetMapping("/educacion/traer")
-    public List<EducacionEntidad> getEducacion() {
+    public List<Educacion> getEducacion() {
         return educacionInterfaz.getEducacion();
     }        
 
@@ -38,7 +38,7 @@ public class EducacionControlador {
 //    } 
     
     @PostMapping("/educacion/crear")
-	public String crearEducacion(@RequestBody EducacionEntidad educacion) {
+	public String crearEducacion(@RequestBody Educacion educacion) {
 		educacionInterfaz.saveEducacion(educacion);
 		return "Educacion creada con éxito";
 	}
@@ -50,10 +50,10 @@ public class EducacionControlador {
 	}
 	
 	@PutMapping("/educacion/editar/{id}")
-	public EducacionEntidad modificarEducacion(@PathVariable String id, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("fechafin") LocalDate nuevaFechafin, @RequestParam ("institucion") String nuevaInstitucion,
+	public Educacion modificarEducacion(@PathVariable String id, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("fechafin") LocalDate nuevaFechafin, @RequestParam ("institucion") String nuevaInstitucion,
 											@RequestParam ("institucionurl") String nuevaInstitucionurl, @RequestParam ("fotourl") String nuevaFotourl) {
 		
-		EducacionEntidad educacion = educacionInterfaz.findEducacion(id);
+		Educacion educacion = educacionInterfaz.findEducacion(id);
 		
 		educacion.setFechafin(nuevaFechafin);
 		educacion.setFotourl(nuevaFotourl);
@@ -64,4 +64,9 @@ public class EducacionControlador {
 		educacionInterfaz.saveEducacion(educacion);
 		return educacion;
 	}
+	
+	@GetMapping("/educacion/traer/perfil")
+	public Educacion findEducacion() {
+		return educacionInterfaz.findEducacion(null);
+	}  
 }

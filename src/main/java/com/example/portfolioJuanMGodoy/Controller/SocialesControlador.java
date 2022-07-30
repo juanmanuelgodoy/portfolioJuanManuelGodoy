@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
-import com.example.portfolioJuanMGodoy.Entity.SocialesEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Sociales;
 import com.example.portfolioJuanMGodoy.Interface.SocialesInterfaz;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class SocialesControlador {
     SocialesInterfaz socialesInterfaz;
 
     @GetMapping("/sociales/traer")
-    public List<SocialesEntidad> getSociales() {
+    public List<Sociales> getSociales() {
         return socialesInterfaz.getSociales();
     }
 
@@ -35,7 +35,7 @@ public class SocialesControlador {
 //    }
 
     @PostMapping("/sociales/crear")
-	public String crearSociales(@RequestBody SocialesEntidad sociales) {
+	public String crearSociales(@RequestBody Sociales sociales) {
     	socialesInterfaz.saveSociales(sociales);
 		return "Redes sociales creadas con éxito";
 	}
@@ -47,9 +47,9 @@ public class SocialesControlador {
 	}
 
     @PutMapping("/sociales/editar/{id}")
-	public SocialesEntidad modificarSociales(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("url") String nuevaUrl, @RequestParam ("fotourl") String nuevaFotourl) {
+	public Sociales modificarSociales(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("url") String nuevaUrl, @RequestParam ("fotourl") String nuevaFotourl) {
 
-    	SocialesEntidad sociales = socialesInterfaz.findSociales(id);
+    	Sociales sociales = socialesInterfaz.findSociales(id);
 
     	sociales.setFotourl(nuevaFotourl);
     	sociales.setNombre(nuevoNombre);

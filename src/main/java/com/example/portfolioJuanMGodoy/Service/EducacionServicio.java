@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Service;
 
-import com.example.portfolioJuanMGodoy.Entity.EducacionEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Educacion;
 import com.example.portfolioJuanMGodoy.Interface.EducacionInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.EducacionRepositorio;
 import java.util.List;
@@ -15,13 +15,13 @@ public class EducacionServicio implements EducacionInterfaz{
     EducacionRepositorio educacionRepositorio;
    
 	@Override 
-	public List<EducacionEntidad> getEducacion() { 
-		List<EducacionEntidad> educacion = educacionRepositorio.findAll(); 
+	public List<Educacion> getEducacion() { 
+		List<Educacion> educacion = educacionRepositorio.findAll(); 
 		return educacion; 
 	}
 
 	@Override 
-	public void saveEducacion(EducacionEntidad educacion) {
+	public void saveEducacion(Educacion educacion) {
 		educacionRepositorio.save(educacion);
 	 }
 
@@ -31,8 +31,8 @@ public class EducacionServicio implements EducacionInterfaz{
 	}
 
 	@Override
-	public EducacionEntidad findEducacion(String id) {
-		EducacionEntidad educacion = educacionRepositorio.findById(id).orElse(null);
+	public Educacion findEducacion(String id) {
+		Educacion educacion = educacionRepositorio.findById(id).orElse(null);
 		return educacion;
 	}
 

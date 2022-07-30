@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
-import com.example.portfolioJuanMGodoy.Entity.SkillEntidad;
-import com.example.portfolioJuanMGodoy.Interface.SkillInterfaz;
+import com.example.portfolioJuanMGodoy.Entity.HardAndSkills;
+import com.example.portfolioJuanMGodoy.Interface.HardAndSkillsInterfaz;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +19,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 @RestController
 @RequestMapping
 //("/api/skills")
-public class SkillControlador {
+public class HardAndSkillsControlador {
     
     @Autowired
-   SkillInterfaz skillInterfaz;
+   HardAndSkillsInterfaz skillInterfaz;
 
     @GetMapping("/skills/traer")
-    public List<SkillEntidad> getSkill() {
+    public List<HardAndSkills> getSkill() {
         return skillInterfaz.getSkill();
     }        
 
@@ -35,7 +35,7 @@ public class SkillControlador {
 //    } 
     
     @PostMapping("/skills/crear")
-	public String crearSkill(@RequestBody SkillEntidad skill) {
+	public String crearSkill(@RequestBody HardAndSkills skill) {
     	skillInterfaz.saveSkill(skill);
 		return "Skill creada con éxito";
 	}
@@ -47,9 +47,9 @@ public class SkillControlador {
 	}
     
     @PutMapping("/skills/editar/{id}")
-	public SkillEntidad modificarSkill(@PathVariable String id, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("dominio") Integer nuevoDominio) {
+	public HardAndSkills modificarSkill(@PathVariable String id, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("dominio") Integer nuevoDominio) {
 
-    	SkillEntidad skill = skillInterfaz.findSkill(id);
+    	HardAndSkills skill = skillInterfaz.findSkill(id);
 
     	skill.setTitulo(nuevoTitulo);
     	skill.setDominio(nuevoDominio);

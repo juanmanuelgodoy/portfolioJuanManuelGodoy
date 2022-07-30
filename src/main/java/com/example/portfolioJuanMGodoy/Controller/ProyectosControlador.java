@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
-import com.example.portfolioJuanMGodoy.Entity.ProyectosEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Proyectos;
 import com.example.portfolioJuanMGodoy.Interface.ProyectosInterfaz;
 
 import java.util.List;
@@ -26,7 +26,7 @@ public class ProyectosControlador {
     ProyectosInterfaz proyectosInterfaz;
 
     @GetMapping("/proyectos/traer")
-    public List<ProyectosEntidad> getProyectos() {
+    public List<Proyectos> getProyectos() {
         return proyectosInterfaz.getProyectos();
     }
 
@@ -36,7 +36,7 @@ public class ProyectosControlador {
 //    }
 
     @PostMapping("/proyectos/crear")
-	public String crearProyectos(@RequestBody ProyectosEntidad proyectos) {
+	public String crearProyectos(@RequestBody Proyectos proyectos) {
     	proyectosInterfaz.saveProyectos(proyectos);
 		return "Proyecto creado con éxito";
 	}
@@ -48,10 +48,10 @@ public class ProyectosControlador {
 	}
 
     @PutMapping("/proyectos/editar/{id}")
-	public ProyectosEntidad modificarProyectos(@PathVariable String id, @RequestParam ("descripcion") String nuevaDescripcion,
+	public Proyectos modificarProyectos(@PathVariable String id, @RequestParam ("descripcion") String nuevaDescripcion,
 			@RequestParam ("titulo") String nuevoTitulo, @RequestParam ("url") String nuevaUrl) {
 
-    	ProyectosEntidad proyectos = proyectosInterfaz.findProyectos(id);
+    	Proyectos proyectos = proyectosInterfaz.findProyectos(id);
 
     	proyectos.setDescripcion(nuevaDescripcion);
     	proyectos.setTitulo(nuevoTitulo);

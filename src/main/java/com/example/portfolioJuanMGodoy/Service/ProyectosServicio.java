@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Service;
 
-import com.example.portfolioJuanMGodoy.Entity.ProyectosEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Proyectos;
 import com.example.portfolioJuanMGodoy.Interface.ProyectosInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.ProyectosRepositorio;
 import java.util.List;
@@ -15,13 +15,13 @@ public class ProyectosServicio implements ProyectosInterfaz{
     ProyectosRepositorio proyectosRepositorio;
 
 	@Override 
-	public List<ProyectosEntidad> getProyectos() { 
-		List<ProyectosEntidad> proyectos = proyectosRepositorio.findAll(); 
+	public List<Proyectos> getProyectos() { 
+		List<Proyectos> proyectos = proyectosRepositorio.findAll(); 
 		return proyectos; 
 	}
 
 	@Override 
-	public void saveProyectos(ProyectosEntidad proyectos) {
+	public void saveProyectos(Proyectos proyectos) {
 		proyectosRepositorio.save(proyectos);
 	 }
 
@@ -31,8 +31,8 @@ public class ProyectosServicio implements ProyectosInterfaz{
 	}
 
 	@Override
-	public ProyectosEntidad findProyectos(String id) {
-		ProyectosEntidad proyectos = proyectosRepositorio.findById(id).orElse(null);
+	public Proyectos findProyectos(String id) {
+		Proyectos proyectos = proyectosRepositorio.findById(id).orElse(null);
 		return proyectos;
 	}
 }

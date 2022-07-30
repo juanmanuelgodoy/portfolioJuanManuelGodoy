@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Controller;
 
-import com.example.portfolioJuanMGodoy.Entity.PersonaEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Persona;
 import com.example.portfolioJuanMGodoy.Interface.PersonaInterfaz;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
-@CrossOrigin("*")
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping
 //("/api/personas")
 public class PersonaControlador {
@@ -25,7 +25,7 @@ public class PersonaControlador {
     PersonaInterfaz personaInterfaz;
 
     @GetMapping("/personas/traer")
-    public List<PersonaEntidad> getPersona() {
+    public List<Persona> getPersona() {
         return personaInterfaz.getPersona();
     }
 
@@ -35,7 +35,7 @@ public class PersonaControlador {
 //    }
 
 	@PostMapping("/personas/crear")
-	public String crearPersona(@RequestBody PersonaEntidad persona) {
+	public String crearPersona(@RequestBody Persona persona) {
 		personaInterfaz.savePersona(persona);
 		return "Persona creada con éxito";
 	}
@@ -47,10 +47,10 @@ public class PersonaControlador {
 	}
 	
 	@PutMapping("/personas/editar/{id}")
-	public PersonaEntidad modificarPersona(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("apellido") String nuevoApellido, @RequestParam ("fotourl") String nuevaFoto,
+	public Persona modificarPersona(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("apellido") String nuevoApellido, @RequestParam ("fotourl") String nuevaFoto,
 											@RequestParam ("email") String nuevoEmail, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("telefono") String nuevoTelefono, @RequestParam ("ubicacion") String nuevaUbicacion,
 											@RequestParam ("acerca") String nuevoAcerca, @RequestParam ("coverurl") String nuevoCoverurl, @RequestParam ("username") String nuevoUsername, @RequestParam ("password") String nuevoPassword) {
-		PersonaEntidad persona = personaInterfaz.findPersona(id);
+		Persona persona = personaInterfaz.findPersona(id);
 		persona.setNombre(nuevoNombre);
 		persona.setApellido(nuevoApellido);
 		persona.setFotourl(nuevaFoto);
@@ -67,7 +67,7 @@ public class PersonaControlador {
 		return persona;
 		
 	}
-}
+
 
 //@RestController
 ////@CrossOrigin (origins = "http://localhost:4200")
@@ -86,9 +86,8 @@ public class PersonaControlador {
 //		return personaInterfaz.getPersona();
 //	}
 
-//	@GetMapping("/persona/traer/perfil")
-//	public PersonaEntidad buscarPersona(@PathVariable String id) {
-//		
-//		return personaInterfaz.buscarPersona(id);
-//}    
-//}
+	@GetMapping("/personas/traer/perfil/")
+	public Persona findPersona() {
+		return personaInterfaz.findPersona(null);
+	}    
+}

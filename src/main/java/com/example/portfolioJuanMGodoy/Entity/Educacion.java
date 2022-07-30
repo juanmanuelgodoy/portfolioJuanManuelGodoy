@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class EducacionEntidad {
+public class Educacion {
     
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -21,7 +21,7 @@ public class EducacionEntidad {
     private String fotourl;
     private int persona;
 
-    public EducacionEntidad(String id, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
+    public Educacion(String id, String titulo, LocalDate fechafin, String institucion, String institucionurl, String fotourl, int persona) {
         this.id = id;
         this.titulo = titulo;
         this.fechafin = fechafin;
@@ -31,7 +31,7 @@ public class EducacionEntidad {
         this.persona = persona;
     }
 
-    public EducacionEntidad() {
+    public Educacion() {
     }
 
     public String getId() {

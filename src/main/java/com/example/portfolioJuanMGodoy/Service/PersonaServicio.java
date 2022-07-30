@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Service;
 
-import com.example.portfolioJuanMGodoy.Entity.PersonaEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Persona;
 import com.example.portfolioJuanMGodoy.Interface.PersonaInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.PersonaRepositorio;
 import java.util.List;
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 	PersonaRepositorio personaRepositorio;
 
 	@Override 
-	public List<PersonaEntidad> getPersona() { 
-		List<PersonaEntidad> persona = personaRepositorio.findAll(); 
+	public List<Persona> getPersona() { 
+		List<Persona> persona = personaRepositorio.findAll(); 
 		return persona; 
 	}
 
 	@Override 
-	public void savePersona(PersonaEntidad persona) {
+	public void savePersona(Persona persona) {
 		personaRepositorio.save(persona);
 	 }
 
@@ -30,8 +30,8 @@ import org.springframework.stereotype.Service;
 	}
 
 	@Override
-	public PersonaEntidad findPersona(String id) {
-		PersonaEntidad persona = personaRepositorio.findById(id).orElse(null);
+	public Persona findPersona(String id) {
+		Persona persona = personaRepositorio.findById(id).orElse(null);
 		return persona;
 	}
 

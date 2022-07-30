@@ -1,6 +1,6 @@
 package com.example.portfolioJuanMGodoy.Service;
 
-import com.example.portfolioJuanMGodoy.Entity.SocialesEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Sociales;
 import com.example.portfolioJuanMGodoy.Interface.SocialesInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.SocialesRepositorio;
 import java.util.List;
@@ -15,13 +15,13 @@ public class SocialesServicio implements SocialesInterfaz{
     SocialesRepositorio socialesRepositorio;
 
 	@Override 
-	public List<SocialesEntidad> getSociales() { 
-		List<SocialesEntidad> sociales = socialesRepositorio.findAll(); 
+	public List<Sociales> getSociales() { 
+		List<Sociales> sociales = socialesRepositorio.findAll(); 
 		return sociales; 
 	}
 
 	@Override 
-	public void saveSociales(SocialesEntidad sociales) {
+	public void saveSociales(Sociales sociales) {
 		socialesRepositorio.save(sociales);
 	 }
 
@@ -31,8 +31,8 @@ public class SocialesServicio implements SocialesInterfaz{
 	}
 
 	@Override
-	public SocialesEntidad findSociales(String id) {
-		SocialesEntidad sociales = socialesRepositorio.findById(id).orElse(null);
+	public Sociales findSociales(String id) {
+		Sociales sociales = socialesRepositorio.findById(id).orElse(null);
 		return sociales;
 	}
    

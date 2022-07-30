@@ -1,7 +1,7 @@
 package com.example.portfolioJuanMGodoy.Service;
 
 
-import com.example.portfolioJuanMGodoy.Entity.ExpLaboralEntidad;
+import com.example.portfolioJuanMGodoy.Entity.ExpLaboral;
 import com.example.portfolioJuanMGodoy.Interface.ExpLaboralInterfaz;
 import com.example.portfolioJuanMGodoy.Repository.ExpLaboralRepositorio;
 import java.util.List;
@@ -15,13 +15,13 @@ public class ExpLaboralServicio implements ExpLaboralInterfaz{
     ExpLaboralRepositorio expLaboralRepositorio;
     
 	@Override 
-	public List<ExpLaboralEntidad> getExpLaboral() { 
-		List<ExpLaboralEntidad> expLaboral = expLaboralRepositorio.findAll(); 
+	public List<ExpLaboral> getExpLaboral() { 
+		List<ExpLaboral> expLaboral = expLaboralRepositorio.findAll(); 
 		return expLaboral; 
 	}
 
 	@Override 
-	public void saveExpLaboral(ExpLaboralEntidad expLaboral) {
+	public void saveExpLaboral(ExpLaboral expLaboral) {
 		expLaboralRepositorio.save(expLaboral);
 	 }
 
@@ -31,8 +31,8 @@ public class ExpLaboralServicio implements ExpLaboralInterfaz{
 	}
 
 	@Override
-	public ExpLaboralEntidad findExpLaboral(String id) {
-		ExpLaboralEntidad expLaboral = expLaboralRepositorio.findById(id).orElse(null);
+	public ExpLaboral findExpLaboral(String id) {
+		ExpLaboral expLaboral = expLaboralRepositorio.findById(id).orElse(null);
 		return expLaboral;
 	}
 }

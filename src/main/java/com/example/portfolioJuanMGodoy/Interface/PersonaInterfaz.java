@@ -1,15 +1,15 @@
 package com.example.portfolioJuanMGodoy.Interface;
 
-import com.example.portfolioJuanMGodoy.Entity.PersonaEntidad;
+import com.example.portfolioJuanMGodoy.Entity.Persona;
 import java.util.List;
 
 public interface PersonaInterfaz {
 	
-	public List<PersonaEntidad> getPersona();
+	public List<Persona> getPersona();
 	
-	public void savePersona(PersonaEntidad persona);
+	public void savePersona(Persona persona);
 
 	public void deletePersona(String id);
 	
-	public PersonaEntidad findPersona(String id);
+	public Persona findPersona(String id);
 }
