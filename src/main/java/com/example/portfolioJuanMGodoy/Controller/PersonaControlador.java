@@ -4,6 +4,7 @@ import com.example.portfolioJuanMGodoy.Entity.Persona;
 import com.example.portfolioJuanMGodoy.Interface.PersonaInterfaz;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,19 +34,21 @@ public class PersonaControlador {
 //   public ResponseEntity<PersonaEntidad> getById(@PathVariable(value = "id") String id) {
 //       return personaInterfaz.getById(id);
 //    }
-
+    @PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/personas/crear")
 	public String crearPersona(@RequestBody Persona persona) {
 		personaInterfaz.savePersona(persona);
 		return "Persona creada con éxito";
 	}
 
+    @PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/personas/borrar/{id}")
 	public String eliminarPersona(@PathVariable String id) {
 		personaInterfaz.deletePersona(id);
 		return "Persona eliminada con exito";
 	}
 	
+    @PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/personas/editar/{id}")
 	public Persona modificarPersona(@PathVariable String id, @RequestParam ("nombre") String nuevoNombre, @RequestParam ("apellido") String nuevoApellido, @RequestParam ("fotourl") String nuevaFoto,
 											@RequestParam ("email") String nuevoEmail, @RequestParam ("titulo") String nuevoTitulo, @RequestParam ("telefono") String nuevoTelefono, @RequestParam ("ubicacion") String nuevaUbicacion,
@@ -86,8 +89,8 @@ public class PersonaControlador {
 //		return personaInterfaz.getPersona();
 //	}
 
-	@GetMapping("/personas/traer/perfil/")
-	public Persona findPersona() {
-		return personaInterfaz.findPersona(null);
-	}    
+//	@GetMapping("/personas/traer/perfil/")
+//	public Persona findPersona() {
+//		return personaInterfaz.findPersona(null);
+//	}    
 }
