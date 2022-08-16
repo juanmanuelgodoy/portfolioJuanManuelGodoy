@@ -6,6 +6,8 @@ import com.example.portfolioJuanMGodoy.Interface.ExpLaboralInterfaz;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -64,5 +66,13 @@ public class ExpLaboralControlador {
     	expLaboralInterfaz.saveExpLaboral(expLaboral);
     	return expLaboral;
     }
+    
+//    @GetMapping("/detail/{id}")
+//    public ResponseEntity<ExpLaboral> getById(@PathVariable("id") String id){
+//        if(!sExpLaboral.existsById(id))
+//            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
+//        ExpLaboral experiencia = sExpLaboral.getOne(id).get();
+//        return new ResponseEntity(experiencia, HttpStatus.OK);
+//    }
 }
 
