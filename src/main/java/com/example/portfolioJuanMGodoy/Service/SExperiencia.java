@@ -31,7 +31,6 @@ public class SExperiencia {
 	}
 
 	public void save(Experiencia expe) {
-		
 		rExperiencia.save(expe);
 	}
 	

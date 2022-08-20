@@ -22,7 +22,7 @@ import com.example.portfolioJuanMGodoy.Security.Controller.Mensaje;
 import com.example.portfolioJuanMGodoy.Service.SExperiencia;
 
 @RestController
-@RequestMapping("explab")
+@RequestMapping("experiencia")
 @CrossOrigin(origins = "http://localhost:4200")
 public class CExperiencia {
 
@@ -40,6 +40,9 @@ public class CExperiencia {
 
 		if (StringUtils.isBlank(dtoexp.getNombreE()))
 			return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		
+		if (StringUtils.isBlank(dtoexp.getDescripcionE()))
+			return new ResponseEntity(new Mensaje("La descripcion es obligatoria"), HttpStatus.BAD_REQUEST);
 
 		if (sExperiencia.existsByNombreE(dtoexp.getNombreE()))
 			return new ResponseEntity(new Mensaje("Esta experiencia ya existe"), HttpStatus.BAD_REQUEST);
@@ -86,10 +89,12 @@ public class CExperiencia {
 	public ResponseEntity<Experiencia> getById(@PathVariable("id") String id) {
 
 		if (!sExperiencia.existsById(id))
+			
 			return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 
 		Experiencia experiencia = sExperiencia.getOne(id).get();
 
 		return new ResponseEntity(experiencia, HttpStatus.OK);
 	}
+	
 }
