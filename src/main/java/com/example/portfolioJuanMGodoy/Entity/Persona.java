@@ -3,6 +3,9 @@ package com.example.portfolioJuanMGodoy.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -12,136 +15,79 @@ public class Persona {
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+    
+    @NotNull
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String nombre;
+    
+    @NotNull
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String apellido;
-    private String email;
-    private String titulo;
-    private String telefono;
-    private String ubicacion;
+    
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
     private String acerca;
-    private String fotourl;
-    private String coverurl;
-    private String username;
-    private String password;
+    
+    @Size(min = 1, max = 50, message = "no cumple con la longitud")
+    private String img;
 
-    public Persona(String id, String nombre, String apellido, String email, String titulo, String telefono, String ubicacion, String acerca, String fotourl, String coverurl, String username, String password) {
-        this.id = id;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.titulo = titulo;
-        this.telefono = telefono;
-        this.ubicacion = ubicacion;
-        this.acerca = acerca;
-        this.fotourl = fotourl;
-        this.coverurl = coverurl;
-        this.username = username;
-        this.password = password;
-    }
+	public Persona(@NotNull @Size(min = 1, max = 50, message = "no cumple con la longitud") String nombre,
+			@NotNull @Size(min = 1, max = 50, message = "no cumple con la longitud") String apellido,
+			@Size(min = 1, max = 50, message = "no cumple con la longitud") String acerca,
+			@Size(min = 1, max = 50, message = "no cumple con la longitud") String img) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.acerca = acerca;
+		this.img = img;
+	}
 
-    public Persona() {
-    }
+	public Persona() {
+		
+	}
 
-    public String getId() {
-        return id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 
-    public String getApellido() {
-        return apellido;
-    }
+	public String getApellido() {
+		return apellido;
+	}
 
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getImg() {
+		return img;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setImg(String img) {
+		this.img = img;
+	}
 
-    public String getTitulo() {
-        return titulo;
-    }
+	public String getAcerca() {
+		return acerca;
+	}
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
+	public void setAcerca(String acerca) {
+		this.acerca = acerca;
+	}
 
-    public String getTelefono() {
-        return telefono;
-    }
+	@Override
+	public String toString() {
+		return "Persona [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", acerca=" + acerca + ", img="
+				+ img + "]";
+	}
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public String getAcerca() {
-        return acerca;
-    }
-
-    public void setAcerca(String acerca) {
-        this.acerca = acerca;
-    }
-
-    public String getFotourl() {
-        return fotourl;
-    }
-
-    public void setFotourl(String fotourl) {
-        this.fotourl = fotourl;
-    }
-
-    public String getCoverurl() {
-        return coverurl;
-    }
-
-    public void setCoverurl(String coverurl) {
-        this.coverurl = coverurl;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonaEntidad{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", titulo=" + titulo + ", telefono=" + telefono + ", ubicacion=" + ubicacion + ", acerca=" + acerca + ", fotourl=" + fotourl + ", coverurl=" + coverurl + ", username=" + username + ", password=" + password + '}';
-    }
-
-	
 }
