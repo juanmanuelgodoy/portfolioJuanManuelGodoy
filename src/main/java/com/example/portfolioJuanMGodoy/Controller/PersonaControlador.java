@@ -17,12 +17,14 @@ import com.example.portfolioJuanMGodoy.Entity.Persona;
 import com.example.portfolioJuanMGodoy.Interface.IPersonaService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfoliojmgfront.web.app")
+
 public class PersonaControlador {
 	
     @Autowired IPersonaService ipersonaService;
     
-    @GetMapping("personas/traer")
+    @GetMapping("/personas/traer")
     public List<Persona> getPersona(){
         return ipersonaService.getPersona();
     }
@@ -56,7 +58,7 @@ public class PersonaControlador {
         return persona;
     }
     
-    @GetMapping("personas/traer/perfil")
+    @GetMapping("/personas/traer/perfil")
     public Persona findPersona(){
     	
         return ipersonaService.findPersona("1");

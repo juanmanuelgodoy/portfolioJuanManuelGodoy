@@ -22,8 +22,10 @@ import com.example.portfolioJuanMGodoy.Security.Controller.Mensaje;
 import com.example.portfolioJuanMGodoy.Service.SExperiencia;
 
 @RestController
-@RequestMapping("experiencia")
-@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/experiencia")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfoliojmgfront.web.app")
+
 public class CExperiencia {
 
 	@Autowired

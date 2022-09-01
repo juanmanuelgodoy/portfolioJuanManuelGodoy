@@ -23,7 +23,8 @@ import com.example.portfolioJuanMGodoy.Service.SEducacion;
 
 @RestController
 @RequestMapping("/educacion")
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "https://portfoliojmgfront.web.app")
 public class CEducacion {
 
 	@Autowired
