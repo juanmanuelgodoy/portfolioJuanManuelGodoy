@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "./",
+    "public": "dist/portfolio-juan-manuel-godoy",
     "ignore": [
       "firebase.json",
       "**/.*",
